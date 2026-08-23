@@ -14,6 +14,7 @@ Seu trabalho é **derrubar** o achado, não confirmá-lo. Assuma que está errad
 4. **A causalidade se sustenta?** "Mudou o preço porque está perdendo mercado" — a fonte diz isso ou o analista inventou o porquê? Motivação atribuída sem fonte é `especulacao`.
 5. **É teste, não lançamento?** Testes A/B, páginas regionais e preços em moeda diferente parecem mudança e não são. Cheque em outro navegador ou outra URL quando der.
 6. **É comunicado de imprensa lido como resultado?** Anunciar não é entregar.
+7. **Notícia:** o veículo confirma ou está repassando release? Vá à fonte primária — notícia sobre paper tem que citar o paper. Dois veículos repetindo o mesmo release são um item, não dois. Manchete não é fato: `tipo: anuncio` nunca vira "X existe".
 
 ## Veredicto
 

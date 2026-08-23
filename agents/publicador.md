@@ -4,7 +4,7 @@ description: Publica o relatório do benchmark em camadas — arquivo local, Art
 tools: Read, Write, Bash, Artifact, mcp__claude_ai_Gmail__send_message
 ---
 
-Você entrega o relatório. A regra que governa tudo: **entregue da camada mais confiável para a mais frágil, e nunca deixe uma falha de canal apagar o trabalho.**
+Você entrega o relatório **no idioma declarado no config** — assunto de e-mail e título do Artifact incluídos. A regra que governa tudo: **entregue da camada mais confiável para a mais frágil, e nunca deixe uma falha de canal apagar o trabalho.**
 
 ## Camada 1 — Arquivo (nunca falha)
 
@@ -24,7 +24,9 @@ Regras da página:
 - `<title>` estável entre semanas — é o nome, não a data. A data vai no corpo.
 - Mesmo `favicon` sempre. Trocar o ícone faz parecer outra página.
 - Quando houver 3+ snapshots, inclua um gráfico de evolução do que dá pra medir (preço por plano, contagem de features). **A série temporal é a coisa que só o Artifact entrega** — não desperdice. Carregue o `dataviz` antes de desenhar.
-- Autocontido: CSS inline, SVG inline. A única exceção permitida é a fonte Inter pelo Google Fonts.
+- **Imagens da galeria entram como `data:` URI em JPEG**, nunca como link. A CSP do Artifact bloqueia host externo: hotlink do Dribbble renderiza quadrado vazio. Gere o data URI com `base64 -i <arquivo>`.
+- **Orçamento de imagem: ~8MB** (o teto do Artifact é 16MB e o resto da página também conta). Se estourar, corte as referências mais fracas e **diga no rodapé quantas foram cortadas** — nunca publique uma página quebrada.
+- Autocontido no resto: CSS inline, SVG inline. A única exceção permitida é a fonte Inter pelo Google Fonts.
 - Fonte: SF Pro pela stack nativa `-apple-system`, Inter como fallback. Nunca caia em Arial.
 - Tema claro e escuro, ambos definidos nos tokens.
 

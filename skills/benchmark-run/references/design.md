@@ -62,6 +62,14 @@ O corpo **não cresce** junto com o título. Ele fica pequeno de propósito.
 
 **Chip de fonte** — 13px, `--muted`, mostrando o domínio e não a URL. Toda afirmação leva um.
 
+**Galeria visual** — grid de 2 colunas (1 no mobile), gap de 32px, sobre chão escuro. Imagem com `border-radius:24px`, `width:100%`, **sem borda e sem sombra**. Abaixo de cada uma, fora da imagem: título 20px/600, o *porquê* em corpo pequeno e muted, crédito 13px com link para a fonte.
+
+Nunca ponha legenda dentro da imagem, nem overlay, nem gradiente por cima. A imagem é a obra de outra pessoa — mostre inteira. Referência nova da semana ganha uma pill discreta acima do título.
+
+Sem Playwright, o mesmo grid vira cartões só de texto: título, o porquê, crédito. Não desenhe placeholder cinza fingindo imagem.
+
+**Inovação** — chão claro, sem imagem. Manchete em `h-find`, duas frases, chip de fonte. **O contraste com a galeria é proposital**: uma seção é para olhar, a outra é para ler. Misturar as duas linguagens apaga as duas.
+
 **Série temporal** — SVG inline, linha de 2px, sem grade, só primeiro e último rótulo. Sobre seção clara, linha preta; sobre escura, branca. Cor só para marcar o ponto que mudou. Carregue `dataviz` antes.
 
 ## O que não fazer

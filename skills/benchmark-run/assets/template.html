@@ -54,6 +54,19 @@ p strong{color:var(--fg);font-weight:600}
 .meta a:hover{opacity:1}
 .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5}
 
+/* galeria: grid de referências visuais */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:44px 32px;margin-top:56px}
+@media(max-width:720px){.grid{grid-template-columns:1fr;gap:40px}}
+.ref img{width:100%;height:auto;display:block;border-radius:24px}
+.ref .noimg{width:100%;aspect-ratio:4/3;border-radius:24px;border:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px}
+.ref h3{font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.25;margin:20px 0 8px}
+.ref p{font-size:15px;margin:0 0 12px}
+.ref .cred{font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--muted)}
+.ref .cred a{color:inherit}
+.new{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;border:1px solid var(--hair);margin-top:18px}
+
 .minor{padding:20px 0;border-top:1px solid var(--hair);color:var(--muted)}
 .chart svg{width:100%;height:auto;display:block;overflow:visible;margin-top:40px}
 .foot{font-size:13px;color:var(--muted);letter-spacing:.01em;padding:56px 24px;
@@ -114,7 +127,45 @@ p strong{color:var(--fg);font-weight:600}
   </div>
 </section>
 
-<!-- 4. Apêndice -->
+<!-- 4. Galeria: só se a trilha visual estiver ligada -->
+<section class="sec sec--dark">
+  <div class="in in--center">
+    <h2 class="h-sec">Referências da semana</h2>
+    <p class="lede">Onboarding de fintech — o que já virou convenção e o que ainda é aposta.</p>
+  </div>
+  <div class="in grid">
+
+    <article class="ref">
+      <img src="data:image/jpeg;base64,..." alt="Onboarding progressivo do Monzo">
+      <span class="new">Nova</span>
+      <h3>Onboarding progressivo do Monzo</h3>
+      <p>Pede só o dado necessário para o próximo passo, adiando o KYC até depois do primeiro valor entregue.</p>
+      <div class="cred">Monzo · <a href="#">mobbin.com</a></div>
+    </article>
+
+    <article class="ref">
+      <div class="noimg">sem captura disponível</div>
+      <h3>Segunda referência</h3>
+      <p>Uma frase dizendo que problema de design isto resolve. Sem essa frase, a referência não entra.</p>
+      <div class="cred">Autor · <a href="#">behance.net</a></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 5. Inovação: chão claro, sem imagem. O contraste com a galeria é proposital. -->
+<section class="sec sec--light">
+  <div class="in">
+    <p class="eyebrow">Inovação</p>
+    <article class="find">
+      <h2 class="h-find">Banco Central abre consulta sobre open finance em pagamentos recorrentes</h2>
+      <p>Duas frases dizendo o que muda para quem faz este produto. Anúncio não é fato consumado — se for só anúncio, o texto diz isso.</p>
+      <div class="meta"><a href="#">bcb.gov.br</a><span class="dot"></span>19 ago<span class="dot"></span>regulação</div>
+    </article>
+  </div>
+</section>
+
+<!-- 6. Apêndice -->
 <section class="sec sec--light">
   <div class="in">
     <p class="eyebrow">Também mudou</p>

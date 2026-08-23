@@ -1,53 +1,66 @@
 ---
 name: benchmark-run
-description: Executa uma rodada do benchmark semanal — coleta em paralelo por concorrente e dimensão, compara com o snapshot anterior, analisa impacto, verifica cada achado e publica o relatório. Use quando for hora de rodar o benchmark, manual ou agendado.
+description: Executa uma rodada do benchmark semanal — coleta em paralelo por trilha (concorrentes, visual, inovação), compara com o snapshot anterior, verifica cada achado e publica o relatório. Use quando for hora de rodar o benchmark, manual ou agendado.
 ---
 
 # Execução do benchmark semanal
 
 Leia `benchmark/config.md` antes de qualquer coisa. Se não existir, pare e mande rodar `/benchmark-setup`.
 
-Você é o **orquestrador**. Não colete nada você mesma — delegue para os subagents e monte o resultado.
+**Escreva tudo no idioma declarado no config** e passe esse idioma a todos os subagents.
 
-## Fase 1 — Coleta (paralela)
+Você é o **orquestrador**. Não colete nada você mesma — delegue e monte o resultado.
 
-Dispare em **uma única mensagem** com múltiplas chamadas de `Agent`:
+## Fase 1 — Coleta, por trilha (paralela)
 
-- um `coletor-concorrente` **por concorrente** do config, passando: nome, URL, por que está na lista, e as dimensões ativas
-- um `coletor-mercado` se a dimensão `mercado` estiver ativa
+Dispare em **uma única mensagem** com múltiplas chamadas de `Agent`, só das trilhas ativas:
 
-Cada coletor devolve JSON no schema de `references/schema.md`. Não aceite prosa.
+| Trilha | Despacho |
+|---|---|
+| `concorrentes` | um `coletor-concorrente` **por concorrente**, com nome, URL, razão de estar na lista e dimensões ativas |
+| `visual` | um `curador-visual` **por fonte visual**, com o tema da busca e se há Playwright disponível |
+| `inovacao` | um `scout-inovacao` **por ângulo**, com o contexto do config |
 
-## Fase 2 — Diff
+Cada um devolve JSON no schema de `references/schema.md`. Não aceite prosa.
+
+**Conector ausente não derruba a rodada.** Se o Mobbin não estiver conectado, siga com as outras fontes. Se não houver Playwright, a galeria sai sem imagem. Registre no rodapé o que faltou.
+
+## Fase 2 — Diff (só concorrentes e inovação)
 
 Encontre o snapshot mais recente em `benchmark/snapshots/`.
 
-- **Se não houver nenhum**: esta é a linha de base. Salve o snapshot, escreva um relatório curto de "estado atual do campo" e pare. Diga explicitamente que os deltas começam na semana que vem.
-- **Se houver**: chame o `diffador` passando o snapshot anterior e a coleta de hoje. Ele devolve só o que mudou, classificado.
+- **Se não houver nenhum**: é a linha de base. Salve o snapshot, escreva um relatório de "estado atual do campo" e diga que os deltas começam na semana que vem.
+- **Se houver**: chame o `diffador` com o snapshot anterior e a coleta de hoje.
+
+**A trilha visual não passa pelo diffador.** Uma referência de UI não muda entre semanas — ela aparece. Comparar imagem com o mesmo mecanismo dos fatos produz ruído. A galeria é **curadoria acumulativa**: o curador já marcou o que é `nova` conferindo `benchmark/galeria/`, e é só isso que o relatório precisa saber.
 
 ## Fase 3 — Análise e verificação (pipeline, não barreira)
 
-Para cada mudança que o diffador retornou, em paralelo:
+Para cada delta de `concorrentes` e cada evento de `inovacao`, em paralelo:
 
-1. `analista` — por que isso importa **para este produto**, dada a decisão declarada no config
+1. `analista` — por que importa **para este produto**, dada a decisão do config
 2. `critico` — tenta derrubar o achado
 
-**Todo achado que o crítico marcar como `refutado` ou `sem_fonte` é cortado.** Sem exceção, sem "mas era interessante". Registre quantos foram cortados — esse número vai no rodapé do relatório.
+**Todo achado marcado como `refutado`, `sem_fonte`, `artefato` ou `especulacao` é cortado.** Sem exceção. Conte quantos foram — vai no rodapé.
+
+A trilha visual pula esta fase: o filtro dela é o próprio curador, que só traz referência com a frase de "que problema isto resolve".
 
 ## Fase 4 — Entrega
 
-Chame o `editor` com os achados sobreviventes, o config e o `historico.md`. Ele monta o relatório.
+Chame o `editor` com os achados sobreviventes, a galeria, o config e o `historico.md`.
 
 Depois:
 - salve o snapshot bruto em `benchmark/snapshots/YYYY-MM-DD.json`
-- acrescente 3–6 linhas em `benchmark/historico.md` (a memória de longo prazo: padrões que se repetem)
-- chame o `publicador` com o markdown do editor e o config
+- acrescente 3–6 linhas em `benchmark/historico.md` (memória de longo prazo: padrões que se repetem)
+- chame o `publicador` com o markdown do editor, a galeria e o config
 
-O `publicador` entrega em três camadas — arquivo local, Artifact na URL estável, ping por e-mail — nessa ordem de confiabilidade. Se uma camada falhar, as anteriores já entregaram. **Não aborte a rodada porque o e-mail não saiu.**
+O `publicador` entrega em três camadas — arquivo local, Artifact na URL estável, ping por e-mail — nessa ordem de confiabilidade. **Não aborte a rodada porque o e-mail não saiu.**
 
 ## Semana morta
 
 Se nada relevante mudou, o relatório tem 4 linhas dizendo isso, listando o que foi verificado. **Não invente relevância para justificar a rodada.** Um "nada mudou" honesto é o que faz a pessoa confiar no relatório da semana em que algo mudou.
+
+Uma trilha visual ativa quase nunca dá semana morta — sempre há referência nova. Isso não é motivo para inflar a trilha de concorrentes.
 
 ## Padrão de qualidade
 

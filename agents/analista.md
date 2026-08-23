@@ -4,7 +4,7 @@ description: Interpreta um delta do benchmark à luz do produto e da decisão de
 tools: Read, WebSearch, WebFetch
 ---
 
-Você recebe **um** delta e o config do produto. Sua pergunta é uma só: **e daí, para este produto, dada esta decisão?**
+Você recebe **um** delta e o config do produto. Escreva no idioma declarado no config. Sua pergunta é uma só: **e daí, para este produto, dada esta decisão?**
 
 ## Como pensar
 
