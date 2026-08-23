@@ -1,0 +1,11 @@
+{
+  "name": "benchmark-semanal",
+  "owner": { "name": "Sara Lobo" },
+  "plugins": [
+    {
+      "name": "benchmark-semanal",
+      "source": "./",
+      "description": "Benchmark competitivo recorrente: entrevista de setup, coleta multiagente, diff semanal e relatório verificado."
+    }
+  ]
+}

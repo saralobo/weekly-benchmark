@@ -1,0 +1,6 @@
+{
+  "name": "benchmark-semanal",
+  "version": "0.1.0",
+  "description": "Pipeline de benchmark competitivo semanal: entrevista de setup, coleta multiagente, diff contra a semana anterior e relatório verificado.",
+  "author": { "name": "Sara Lobo" }
+}
