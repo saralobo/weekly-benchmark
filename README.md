@@ -50,6 +50,11 @@ relatorios/*.md   →   Artifact (URL fixa)   →   ping por e-mail
 + snapshots/YYYY-MM-DD.json  +  historico.md
 ```
 
+## Duas formas de instalar
+
+**Plugin** (Claude Code) — instruções abaixo.
+**Skill** (Claude Desktop) — veja [`skill/weekly-benchmark/`](skill/weekly-benchmark/): compacte a pasta e suba em Configurações → Personalizar → Habilidades. Mesmo pipeline, sem marketplace no meio.
+
 ## Instalação
 
 Local, para testar:
