@@ -1,4 +1,4 @@
-# benchmark-semanal
+# weekly-benchmark
 
 Pipeline de benchmark competitivo recorrente para Claude Code. Configura uma vez, roda toda semana, entrega um relatório curto onde toda afirmação tem fonte.
 
@@ -56,7 +56,7 @@ Local, para testar:
 
 ```
 /plugin marketplace add /caminho/para/benchmark-semanal
-/plugin install benchmark-semanal
+/plugin install weekly-benchmark
 ```
 
 Para outras pessoas: suba esta pasta num repo Git e mande `/plugin marketplace add usuario/repo`.

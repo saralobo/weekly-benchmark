@@ -1,6 +1,6 @@
 {
-  "name": "benchmark-semanal",
-  "version": "0.2.0",
+  "name": "weekly-benchmark",
+  "version": "0.2.1",
   "description": "Benchmark semanal em três trilhas: concorrentes, referências visuais (Mobbin, Awwwards, Behance, Dribbble, Savee) e inovação. Setup por entrevista em pt/en/es, coleta multiagente, verificação adversarial e relatório visual.",
   "author": {
     "name": "Sara Lobo"
