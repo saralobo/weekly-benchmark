@@ -1,5 +1,2 @@
 .DS_Store
 benchmark/
-
-# zip gerado localmente, não versionado
-skill/*.zip

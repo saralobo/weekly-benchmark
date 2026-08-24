@@ -1,85 +1,88 @@
 # weekly-benchmark
 
-Pipeline de benchmark competitivo recorrente para Claude Code. Configura uma vez, roda toda semana, entrega um relatório curto onde toda afirmação tem fonte.
+A recurring competitive benchmark for Claude, packaged as a single skill. Set it up once, run it every week, get a short report where every claim carries a source.
 
-## As três trilhas
+**[⬇︎ Download the skill](https://github.com/saralobo/weekly-benchmark/raw/main/dist/weekly-benchmark.zip)**
 
-Escolhidas no setup — ligue só as que importam.
+## Install
 
-- **`concorrentes`** — o que empresas específicas mudam: preço, produto, posicionamento, conteúdo, reputação.
-- **`visual`** — referências de UI, design e arquitetura entregues como galeria de imagens, vindas de Mobbin, Awwwards, Behance, Dribbble, Savee, Land-book, ArchDaily e outras. Ver [o catálogo](skills/benchmark-setup/references/fontes-visuais.md).
-- **`inovacao`** — notícias, artigos, regulação, pesquisa e movimento de capital, varridos por ângulo.
+**Claude Desktop / claude.ai** — download the zip above, then **Settings → Customize → Skills → add** and upload it.
 
-## Conectores
+**Claude Code** — clone into your skills folder:
+```
+git clone https://github.com/saralobo/weekly-benchmark.git ~/.claude/skills/weekly-benchmark
+```
 
-Opcionais, e o setup pede permissão explicando o custo antes de instalar qualquer coisa. Ver [conectores.md](skills/benchmark-setup/references/conectores.md).
+Then type `/weekly-benchmark`, or just ask for "a weekly benchmark of my product".
 
-- **Mobbin MCP** — 621 mil telas de apps reais. Exige plano pago do Mobbin.
-- **Playwright MCP** — captura os screenshots da galeria. ~700MB de binários.
+## Three tracks
 
-**Nenhum conector ausente derruba a rodada.** Cada um degrada e o rodapé do relatório diz o que faltou.
+Chosen during setup — enable only what matters.
 
-## Como usar
+- **`competitors`** — what specific companies change: pricing, product, positioning, content, reputation.
+- **`visual`** — UI, design and architecture references delivered as an image gallery, from Mobbin, Awwwards, Behance, Dribbble, Savee, Land-book, ArchDaily and others. See [the catalogue](references/visual-sources.md).
+- **`innovation`** — news, articles, regulation, research and capital movement, swept angle by angle.
 
-1. `/benchmark-setup` — pergunta o idioma (pt/en/es), lê o site do seu produto, propõe um perfil de configuração inteiro e ajusta com você. Gera `benchmark/config.md`.
-2. Agende `/benchmark-run` no dia que quiser (use a skill `schedule`).
-3. `/benchmark-status` a qualquer momento, para ver o que está sendo monitorado.
+## Language
 
-A primeira execução é a **linha de base** — não tem diff. Os deltas começam na segunda rodada.
+Setup asks first: **English, Portuguese or Spanish.** The choice propagates to every agent, the analysis, the gallery captions and the email. The skill's own instructions are in English.
 
-## Como funciona
+## How it works
 
 ```
 config.md
    ↓
-trilha concorrentes → coletor-concorrente (1 por concorrente)
-trilha visual       → curador-visual   (1 por fonte)  ─┐
-trilha inovação     → scout-inovacao   (1 por ângulo)  │
-   ↓  JSON com fonte em todo fato                      │
-diffador  ──  compara com snapshots/<semana anterior>.json    │
-   ↓  só o que mudou, classificado                            │
-analista + critico (em paralelo, por delta)                   │
-   ↓  só o que sobrevive à tentativa de refutação             │
-editor  ←─────────── galeria acumulativa, fora do diff ───────┘
+competitors track → competitor-collector (1 per competitor)
+visual track      → visual-curator       (1 per source)  ─┐
+innovation track  → innovation-scout     (1 per angle)    │
+   ↓  JSON with a source on every fact                    │
+differ  ──  compares against snapshots/<last week>.json    │
+   ↓  only what changed, classified                        │
+analyst + critic (in parallel, per delta)                  │
+   ↓  only what survives the attempt to refute             │
+editor  ←────── cumulative gallery, outside the diff ──────┘
    ↓
-publicador
+publisher
    ↓
-relatorios/*.md   →   Artifact (URL fixa)   →   ping por e-mail
-     (nunca falha)      (a entrega de verdade)     (degrada sem quebrar)
+reports/*.md   →   Artifact (fixed URL)   →   email ping
+  (never fails)      (the real delivery)      (degrades safely)
 
-+ snapshots/YYYY-MM-DD.json  +  historico.md
++ snapshots/YYYY-MM-DD.json  +  history.md
 ```
 
-## Duas formas de instalar
+Each role is a briefing in [`references/agents/`](references/agents/), invoked through the `Agent` tool so it runs in its own context — eight competitors in parallel won't flood the main window.
 
-**Plugin** (Claude Code) — instruções abaixo.
-**Skill** (Claude Desktop) — veja [`skill/weekly-benchmark/`](skill/weekly-benchmark/): compacte a pasta e suba em Configurações → Personalizar → Habilidades. Mesmo pipeline, sem marketplace no meio.
+## Connectors
 
-## Instalação
+Optional. Setup asks permission and states the cost before installing anything. See [connectors.md](references/connectors.md).
 
-Local, para testar:
+- **Mobbin MCP** — 621k screens from shipped apps. Needs a paid Mobbin plan.
+- **Playwright MCP** — captures the gallery screenshots. ~700MB of binaries.
 
-```
-/plugin marketplace add /caminho/para/benchmark-semanal
-/plugin install weekly-benchmark
-```
+**No missing connector kills a round.** Each degrades, and the report footer says what was unavailable.
 
-Para outras pessoas: suba esta pasta num repo Git e mande `/plugin marketplace add usuario/repo`.
+## Design decisions
 
-## As três decisões de design
+**The diff is the product.** Collection without comparison is a description of the market — pretty and useless. The value is in "what changed since last time".
 
-**O diff é o produto.** Uma coleta sem comparação é uma descrição do mercado — bonita e inútil. O valor está em "o que mudou desde a última vez".
+**The critic has veto power.** Every finding passes an agent whose job is to knock it down. No verifiable source, no entry. That's what separates a benchmark from a plausible summary.
 
-**O crítico tem poder de veto.** Todo achado passa por um agente cujo trabalho é derrubá-lo. Sem fonte verificável, morre. É o que separa um benchmark de um resumo plausível.
+**A dead week is a valid delivery.** When nothing changes, the report says so in four lines — and the email still goes out. Silence is ambiguous: the reader can't tell whether nothing happened or the pipeline broke.
 
-**Semana morta é entrega válida.** Quando nada muda, o relatório diz isso em quatro linhas — e o e-mail vai mesmo assim. Silêncio é ambíguo: a pessoa não sabe se nada aconteceu ou se o pipeline quebrou.
+**The visual track skips the diff.** A UI reference doesn't change between weeks — it appears. The gallery is cumulative curation, filtered by one mandatory sentence per reference: *what design problem does this solve?* Without it, it's a mood board.
 
-**A trilha visual não passa pelo diff.** Uma referência de UI não muda entre semanas — ela aparece. A galeria é curadoria acumulativa, e o filtro dela é uma frase obrigatória por referência: *que problema de design isto resolve?* Sem essa frase, vira mural.
+**Images must be embedded.** Artifacts block external hosts, so hotlinking Dribbble renders empty squares. That's why screenshot capture isn't a luxury — it's what makes the visual track exist. Every reference ships with author, project and link.
 
-**Imagem tem que ser embutida.** O Artifact bloqueia host externo, então hotlink do Dribbble renderiza quadrado vazio. É por isso que a captura de screenshot não é luxo — é o que faz a trilha visual existir. Toda referência sai com autor, projeto e link.
+**Delivery is layered.** A local file never fails, the Artifact is the rich delivery, email is only the ping. Scheduled runs may lack an authenticated connector — when the fragile channel drops, the report already exists in the layers below.
 
-**A entrega é em camadas.** Arquivo local nunca falha, Artifact é a entrega rica, e-mail é só o ping. Execuções agendadas podem não ter conector autenticado — quando o canal frágil cai, o relatório já existe nas camadas de baixo. O pipeline nunca aborta por causa do e-mail.
+## Report design
 
-## Estado
+Reports follow a visual system derived from Revolut's craft: full-bleed sections alternating ground, enormous headlines against small body text, pill buttons, no card borders. SF Pro via the native stack, Inter as fallback. See [design.md](references/design.md) and [assets/template.html](assets/template.html).
 
-Tudo em arquivo, na pasta do projeto: `benchmark/config.md`, `benchmark/snapshots/*.json`, `benchmark/historico.md`. Versionável, auditável, sem serviço externo.
+## State
+
+Everything in files, in your project folder: `benchmark/config.md`, `benchmark/snapshots/*.json`, `benchmark/gallery/`, `benchmark/history.md`. Versionable, auditable, no external service.
+
+## Editing
+
+Change `SKILL.md`, `references/` or `assets/`, then run `./build.sh` to rebuild `dist/weekly-benchmark.zip`.
