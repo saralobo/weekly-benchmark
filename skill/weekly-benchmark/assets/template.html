@@ -11,7 +11,7 @@
 body{margin:0;font-family:var(--font);font-size:17px;line-height:1.55;
   letter-spacing:-.005em;-webkit-font-smoothing:antialiased;background:#000}
 
-/* seções full-bleed: cada uma declara seu próprio chão */
+/* full-bleed sections: each declares its own ground */
 .sec{background:var(--bg);color:var(--fg);padding:120px 24px}
 .sec--dark {--bg:#000;--fg:#fff;--muted:rgba(255,255,255,.66);--hair:rgba(255,255,255,.12)}
 .sec--light{--bg:#fff;--fg:#000;--muted:rgba(0,0,0,.62);--hair:rgba(0,0,0,.10)}
@@ -19,7 +19,7 @@ body{margin:0;font-family:var(--font);font-size:17px;line-height:1.55;
 .in{max-width:920px;margin:0 auto}
 .in--center{text-align:center;max-width:760px}
 
-/* tipografia: headline enorme, corpo pequeno */
+/* type: enormous headline, small body */
 .hero{font-size:clamp(48px,9vw,120px);font-weight:600;letter-spacing:-.03em;line-height:.98;margin:0}
 .h-sec{font-size:clamp(34px,5vw,64px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin:0}
 .h-find{font-size:clamp(24px,3vw,36px);font-weight:600;letter-spacing:-.025em;line-height:1.1;margin:0 0 20px}
@@ -30,13 +30,13 @@ p strong{color:var(--fg);font-weight:600}
 .eyebrow{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
   color:var(--muted);margin:0 0 22px}
 
-/* pill: a única forma da marca */
+/* pill: the brand's only shape */
 .pill{display:inline-block;border-radius:999px;padding:13px 26px;font-size:15px;
   font-weight:500;letter-spacing:0;text-decoration:none;
   background:var(--fg);color:var(--bg);margin-top:36px}
 .pill--ghost{background:transparent;color:var(--fg);border:1px solid var(--hair)}
 
-/* delta: o número é o herói */
+/* delta: the number is the hero */
 .delta{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:0 0 26px;
   font-size:clamp(40px,6vw,80px);font-weight:600;letter-spacing:-.035em;line-height:1}
 .delta .before{opacity:.38;text-decoration:line-through;font-weight:400}
@@ -45,7 +45,7 @@ p strong{color:var(--fg);font-weight:600}
   background:color-mix(in srgb,currentColor 14%,transparent)}
 .tag.up{color:var(--up)} .tag.down{color:var(--down)} .tag.warn{color:var(--warn)}
 
-/* achado: faixa com espaço, nunca caixa */
+/* finding: a band with space, never a box */
 .find{padding:64px 0;border-top:1px solid var(--hair)}
 .find:first-of-type{border-top:0;padding-top:0}
 .meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px;
@@ -54,7 +54,7 @@ p strong{color:var(--fg);font-weight:600}
 .meta a:hover{opacity:1}
 .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5}
 
-/* galeria: grid de referências visuais */
+/* gallery: grid of visual references */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:44px 32px;margin-top:56px}
 @media(max-width:720px){.grid{grid-template-columns:1fr;gap:40px}}
 .ref img{width:100%;height:auto;display:block;border-radius:24px}
@@ -74,106 +74,106 @@ p strong{color:var(--fg);font-weight:600}
 .scroll{overflow-x:auto}
 </style>
 
-<!-- 1. Hero: a declaração da semana -->
+<!-- 1. Hero: the week's statement -->
 <section class="sec sec--brand">
   <div class="in">
-    <p class="eyebrow">Benchmark semanal · 24 ago 2026</p>
-    <h1 class="hero">O plano grátis está desaparecendo</h1>
-    <p class="lede">Três dos seis concorrentes monitorados removeram ou encareceram a entrada nas últimas cinco semanas. Não é coincidência.</p>
-    <a class="pill" href="#achados">Ver os 3 achados</a>
+    <p class="eyebrow">Weekly benchmark · 24 Aug 2026</p>
+    <h1 class="hero">The free plan is disappearing</h1>
+    <p class="lede">Three of the six tracked competitors removed or raised the price of their entry tier in the last five weeks. Not a coincidence.</p>
+    <a class="pill" href="#findings">See all 3 findings</a>
   </div>
 </section>
 
-<!-- 2. Achados: chão claro, o corpo do relatório -->
-<section class="sec sec--light" id="achados">
+<!-- 2. Findings: light ground, the body of the report -->
+<section class="sec sec--light" id="findings">
   <div class="in">
 
     <article class="find">
-      <h2 class="h-find">Concorrente X remove o plano grátis</h2>
+      <h2 class="h-find">Competitor X removes its free plan</h2>
       <div class="delta">
-        <span class="before">R$ 0</span>
+        <span class="before">$0</span>
         <span class="arrow">→</span>
-        <span>R$ 29</span>
-        <span class="tag up">entrada paga</span>
+        <span>$29</span>
+        <span class="tag up">entry now paid</span>
       </div>
-      <p><strong>Por que importa:</strong> duas frases ancoradas na decisão declarada no config. Concreto, com nome e número.</p>
-      <p><strong>Sugestão:</strong> uma ação — ou "monitorar", quando essa for a resposta honesta.</p>
-      <div class="meta"><a href="#">revolut.com/pricing</a><span class="dot"></span>19 ago<span class="dot"></span>estrutural</div>
+      <p><strong>Why it matters:</strong> two sentences anchored in the decision declared in the config. Concrete, with a name and a number.</p>
+      <p><strong>Suggestion:</strong> one action — or "monitor", when that is the honest answer.</p>
+      <div class="meta"><a href="#">revolut.com/pricing</a><span class="dot"></span>19 Aug<span class="dot"></span>structural</div>
     </article>
 
     <article class="find">
-      <h2 class="h-find">Segundo achado</h2>
-      <p>Sem delta numérico quando não houver número. O bloco não precisa de todos os elementos.</p>
-      <div class="meta"><a href="#">fonte.com</a><span class="dot"></span>21 ago</div>
+      <h2 class="h-find">Second finding</h2>
+      <p>No numeric delta when there's no number. The block doesn't need every element.</p>
+      <div class="meta"><a href="#">source.com</a><span class="dot"></span>21 Aug</div>
     </article>
 
   </div>
 </section>
 
-<!-- 3. Série temporal: só a partir do 3º snapshot -->
+<!-- 3. Time series: only from the 3rd snapshot on -->
 <section class="sec sec--dark">
   <div class="in in--center">
-    <h2 class="h-sec">Preço de entrada, 5 semanas</h2>
-    <p class="lede">Para onde o campo está indo — não só o que mudou esta semana.</p>
+    <h2 class="h-sec">Entry price, 5 weeks</h2>
+    <p class="lede">Where the field is heading — not just what changed this week.</p>
   </div>
   <div class="in chart">
-    <svg viewBox="0 0 900 260" role="img" aria-label="Evolução do preço de entrada">
+    <svg viewBox="0 0 900 260" role="img" aria-label="Entry price over time">
       <polyline points="20,220 240,215 460,150 680,90 880,60" fill="none"
         stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="680" cy="90" r="5" fill="#FFB020"/>
-      <text x="20" y="252" fill="rgba(255,255,255,.5)" font-size="13" font-family="var(--font)">21 jul</text>
-      <text x="880" y="252" fill="rgba(255,255,255,.5)" font-size="13" text-anchor="end" font-family="var(--font)">24 ago</text>
+      <text x="20" y="252" fill="rgba(255,255,255,.5)" font-size="13" font-family="var(--font)">21 Jul</text>
+      <text x="880" y="252" fill="rgba(255,255,255,.5)" font-size="13" text-anchor="end" font-family="var(--font)">24 Aug</text>
     </svg>
   </div>
 </section>
 
-<!-- 4. Galeria: só se a trilha visual estiver ligada -->
+<!-- 4. Gallery: only if the visual track is on -->
 <section class="sec sec--dark">
   <div class="in in--center">
-    <h2 class="h-sec">Referências da semana</h2>
-    <p class="lede">Onboarding de fintech — o que já virou convenção e o que ainda é aposta.</p>
+    <h2 class="h-sec">References this week</h2>
+    <p class="lede">Fintech onboarding — what became convention and what's still a bet.</p>
   </div>
   <div class="in grid">
 
     <article class="ref">
-      <img src="data:image/jpeg;base64,..." alt="Onboarding progressivo do Monzo">
-      <span class="new">Nova</span>
-      <h3>Onboarding progressivo do Monzo</h3>
-      <p>Pede só o dado necessário para o próximo passo, adiando o KYC até depois do primeiro valor entregue.</p>
+      <img src="data:image/jpeg;base64,..." alt="Monzo's progressive onboarding">
+      <span class="new">New</span>
+      <h3>Monzo's progressive onboarding</h3>
+      <p>Asks only for what the next step needs, deferring KYC until after first value is delivered.</p>
       <div class="cred">Monzo · <a href="#">mobbin.com</a></div>
     </article>
 
     <article class="ref">
-      <div class="noimg">sem captura disponível</div>
-      <h3>Segunda referência</h3>
-      <p>Uma frase dizendo que problema de design isto resolve. Sem essa frase, a referência não entra.</p>
-      <div class="cred">Autor · <a href="#">behance.net</a></div>
+      <div class="noimg">no capture available</div>
+      <h3>Second reference</h3>
+      <p>One sentence saying what design problem this solves. Without it, the reference doesn't get in.</p>
+      <div class="cred">Author · <a href="#">behance.net</a></div>
     </article>
 
   </div>
 </section>
 
-<!-- 5. Inovação: chão claro, sem imagem. O contraste com a galeria é proposital. -->
+<!-- 5. Innovation: light ground, no images. The contrast with the gallery is deliberate. -->
 <section class="sec sec--light">
   <div class="in">
-    <p class="eyebrow">Inovação</p>
+    <p class="eyebrow">Innovation</p>
     <article class="find">
-      <h2 class="h-find">Banco Central abre consulta sobre open finance em pagamentos recorrentes</h2>
-      <p>Duas frases dizendo o que muda para quem faz este produto. Anúncio não é fato consumado — se for só anúncio, o texto diz isso.</p>
-      <div class="meta"><a href="#">bcb.gov.br</a><span class="dot"></span>19 ago<span class="dot"></span>regulação</div>
+      <h2 class="h-find">Central bank opens consultation on open finance for recurring payments</h2>
+      <p>Two sentences on what changes for whoever builds this product. An announcement is not an accomplished fact — if it's only an announcement, the text says so.</p>
+      <div class="meta"><a href="#">bcb.gov.br</a><span class="dot"></span>19 Aug<span class="dot"></span>regulation</div>
     </article>
   </div>
 </section>
 
-<!-- 6. Apêndice -->
+<!-- 6. Appendix -->
 <section class="sec sec--light">
   <div class="in">
-    <p class="eyebrow">Também mudou</p>
-    <div class="minor">Item menor · <a href="#" style="color:inherit">fonte</a></div>
-    <div class="minor">Outro item · <a href="#" style="color:inherit">fonte</a></div>
+    <p class="eyebrow">Also changed</p>
+    <div class="minor">Minor item · <a href="#" style="color:inherit">source</a></div>
+    <div class="minor">Another item · <a href="#" style="color:inherit">source</a></div>
   </div>
 </section>
 
 <footer class="foot">
-  Verificados: 6 concorrentes, 4 dimensões · Falhas de coleta: nenhuma · Achados cortados na verificação: 3
+  Checked: 6 competitors, 4 dimensions · Collection failures: none · Findings cut in verification: 3
 </footer>

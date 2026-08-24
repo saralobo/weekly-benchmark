@@ -1,22 +1,26 @@
-# weekly-benchmark — versão skill
+# weekly-benchmark — skill build
 
-Mesmo pipeline do plugin, empacotado como skill para instalar direto no Claude Desktop.
+Same pipeline as the plugin, packaged as a skill you can install straight into Claude Desktop.
 
-## Instalar no Claude Desktop
+## Install in Claude Desktop
 
-1. Compacte esta pasta: `zip -r weekly-benchmark.zip weekly-benchmark`
-2. **Configurações → Personalizar → Habilidades → adicionar**, e suba o zip.
-3. No chat, digite `/weekly-benchmark` — ou só peça "monta um benchmark semanal do meu produto".
+1. Zip this folder: `zip -r weekly-benchmark.zip weekly-benchmark`
+2. **Settings → Customize → Skills → add**, and upload the zip.
+3. In chat, type `/weekly-benchmark` — or just ask for "a weekly benchmark of my product".
 
-Sem marketplace e sem cache no meio: a skill lê do que você subiu.
+No marketplace, no cache in between: the skill reads what you uploaded.
 
-## Diferença para o plugin
+## Language
+
+The skill's instructions are in English. The **report** comes out in whatever the person picks during setup — English, Portuguese or Spanish — and that choice propagates to every agent, the analysis, the gallery captions and the email.
+
+## Difference from the plugin
 
 | | Plugin | Skill |
 |---|---|---|
-| Instalação | marketplace via git | upload direto |
-| Comandos | `/benchmark-setup`, `/benchmark-run`, `/benchmark-status` | `/weekly-benchmark`, que roteia sozinho |
-| Agentes | subagentes nomeados, com ferramentas restritas por papel | briefings em `references/agentes/`, passados ao `Agent` |
-| Paralelismo e contexto isolado | sim | sim |
+| Install | git marketplace | direct upload |
+| Commands | `/benchmark-setup`, `/benchmark-run`, `/benchmark-status` | `/weekly-benchmark`, which routes itself |
+| Agents | named subagents with per-role tool limits | briefings in `references/agents/`, passed to `Agent` |
+| Parallelism and isolated context | yes | yes |
 
-O comportamento é o mesmo. O que a skill perde é a restrição de ferramentas por agente — detalhe aqui, já que todos os papéis precisam basicamente de leitura web e escrita de arquivo.
+Behaviour is the same. What the skill loses is per-agent tool restriction — a detail here, since every role mainly needs web reading and file writing.

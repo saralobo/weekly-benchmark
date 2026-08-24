@@ -1,64 +1,64 @@
-# Execução do benchmark semanal
+# Running a round
 
-Leia `benchmark/config.md` antes de qualquer coisa. Se não existir, pare e mande rodar `/benchmark-setup`.
+Read `benchmark/config.md` before anything else. If it doesn't exist, stop and run setup.
 
-**Escreva tudo no idioma declarado no config** e passe esse idioma a todos os subagents.
+**Write everything in the language declared in the config** and pass that language to every agent.
 
-Você é o **orquestrador**. Não colete nada você mesma — delegue e monte o resultado.
+You are the **orchestrator**. Don't collect anything yourself — delegate and assemble.
 
-**Como delegar:** cada papel abaixo tem um briefing em `references/agentes/<nome>.md`. Para acionar um, use a ferramenta `Agent` (tipo `general-purpose`) passando **o conteúdo do briefing** como prompt, mais os dados daquela chamada específica (o concorrente, a fonte, o ângulo) e o idioma do config. Cada agente roda em contexto próprio — é isso que permite disparar oito coletas em paralelo sem encher a sua janela.
+**How to delegate:** each role below has a briefing in `references/agents/<name>.md`. To invoke one, use the `Agent` tool (type `general-purpose`) passing **the briefing's contents** as the prompt, plus that call's specific data (the competitor, the source, the angle) and the config language. Each agent runs in its own context — that's what lets you fire eight collections in parallel without flooding your window.
 
-## Fase 1 — Coleta, por trilha (paralela)
+## Phase 1 — Collection, by track (parallel)
 
-Dispare em **uma única mensagem** com múltiplas chamadas de `Agent`, só das trilhas ativas:
+Fire in **a single message** with multiple `Agent` calls, only for active tracks:
 
-| Trilha | Despacho |
+| Track | Dispatch |
 |---|---|
-| `concorrentes` | um `agentes/coletor-concorrente.md` **por concorrente**, com nome, URL, razão de estar na lista e dimensões ativas |
-| `visual` | um `agentes/curador-visual.md` **por fonte visual**, com o tema da busca e se há Playwright disponível |
-| `inovacao` | um `agentes/scout-inovacao.md` **por ângulo**, com o contexto do config |
+| `competitors` | one `agents/competitor-collector.md` **per competitor**, with name, URL, why it's on the list, and active dimensions |
+| `visual` | one `agents/visual-curator.md` **per visual source**, with the search theme and whether Playwright is available |
+| `innovation` | one `agents/innovation-scout.md` **per angle**, with the config's context |
 
-Cada um devolve JSON no schema de `references/schema.md`. Não aceite prosa.
+Each returns JSON in the schema from `references/schema.md`. Don't accept prose.
 
-**Conector ausente não derruba a rodada.** Se o Mobbin não estiver conectado, siga com as outras fontes. Se não houver Playwright, a galeria sai sem imagem. Registre no rodapé o que faltou.
+**A missing connector doesn't kill the round.** No Mobbin, use the other sources. No Playwright, the gallery ships without images. Record what was missing in the footer.
 
-## Fase 2 — Diff (só concorrentes e inovação)
+## Phase 2 — Diff (competitors and innovation only)
 
-Encontre o snapshot mais recente em `benchmark/snapshots/`.
+Find the most recent snapshot in `benchmark/snapshots/`.
 
-- **Se não houver nenhum**: é a linha de base. Salve o snapshot, escreva um relatório de "estado atual do campo" e diga que os deltas começam na semana que vem.
-- **Se houver**: chame o `agentes/diffador.md` com o snapshot anterior e a coleta de hoje.
+- **If there is none**: this is the baseline. Save the snapshot, write a "current state of the field" report, and say deltas start next week.
+- **If there is one**: call `agents/differ.md` with the previous snapshot and today's collection.
 
-**A trilha visual não passa pelo diffador.** Uma referência de UI não muda entre semanas — ela aparece. Comparar imagem com o mesmo mecanismo dos fatos produz ruído. A galeria é **curadoria acumulativa**: o curador já marcou o que é `nova` conferindo `benchmark/galeria/`, e é só isso que o relatório precisa saber.
+**The visual track does not go through the differ.** A UI reference doesn't change between weeks — it appears. Running the fact-comparison machinery over images produces noise. The gallery is **cumulative curation**: the curator already marked what's `new` by checking `benchmark/gallery/`, and that's all the report needs.
 
-## Fase 3 — Análise e verificação (pipeline, não barreira)
+## Phase 3 — Analysis and verification (pipeline, not barrier)
 
-Para cada delta de `concorrentes` e cada evento de `inovacao`, em paralelo:
+For each `competitors` delta and each `innovation` event, in parallel:
 
-1. `agentes/analista.md` — por que importa **para este produto**, dada a decisão do config
-2. `agentes/critico.md` — tenta derrubar o achado
+1. `agents/analyst.md` — why it matters **for this product**, given the config's decision
+2. `agents/critic.md` — tries to knock the finding down
 
-**Todo achado marcado como `refutado`, `sem_fonte`, `artefato` ou `especulacao` é cortado.** Sem exceção. Conte quantos foram — vai no rodapé.
+**Anything marked `refuted`, `no_source`, `artifact` or `speculation` is cut.** No exceptions. Count them — the number goes in the footer.
 
-A trilha visual pula esta fase: o filtro dela é o próprio curador, que só traz referência com a frase de "que problema isto resolve".
+The visual track skips this phase: its filter is the curator itself, which only admits references carrying the "what design problem does this solve" sentence.
 
-## Fase 4 — Entrega
+## Phase 4 — Delivery
 
-Chame o `agentes/editor.md` com os achados sobreviventes, a galeria, o config e o `historico.md`.
+Call `agents/editor.md` with the surviving findings, the gallery, the config and `benchmark/history.md`.
 
-Depois:
-- salve o snapshot bruto em `benchmark/snapshots/YYYY-MM-DD.json`
-- acrescente 3–6 linhas em `benchmark/historico.md` (memória de longo prazo: padrões que se repetem)
-- chame o `agentes/publicador.md` com o markdown do editor, a galeria e o config
+Then:
+- save the raw snapshot to `benchmark/snapshots/YYYY-MM-DD.json`
+- append 3–6 lines to `benchmark/history.md` (long-term memory: patterns that repeat)
+- call `agents/publisher.md` with the editor's markdown, the gallery and the config
 
-O `agentes/publicador.md` entrega em três camadas — arquivo local, Artifact na URL estável, ping por e-mail — nessa ordem de confiabilidade. **Não aborte a rodada porque o e-mail não saiu.**
+The publisher delivers in three layers — local file, Artifact at the stable URL, email ping — in that order of reliability. **Don't abort a round because the email didn't go out.**
 
-## Semana morta
+## Dead week
 
-Se nada relevante mudou, o relatório tem 4 linhas dizendo isso, listando o que foi verificado. **Não invente relevância para justificar a rodada.** Um "nada mudou" honesto é o que faz a pessoa confiar no relatório da semana em que algo mudou.
+If nothing relevant changed, the report is four lines saying so, listing what was checked. **Don't invent relevance to justify the round.** An honest "nothing changed" is what earns trust for the week something does.
 
-Uma trilha visual ativa quase nunca dá semana morta — sempre há referência nova. Isso não é motivo para inflar a trilha de concorrentes.
+An active visual track almost never produces a dead week — there's always a new reference. That is not a reason to pad the competitor track.
 
-## Padrão de qualidade
+## Quality bar
 
-Leia `references/qualidade.md` antes de aprovar a saída do editor.
+Read `references/quality.md` before approving the editor's output.

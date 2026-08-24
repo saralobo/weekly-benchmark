@@ -1,119 +1,119 @@
-# Setup do benchmark semanal
+# Setup
 
-Seu trabalho é **produzir um `benchmark/config.md` bom**. Um config raso gera relatórios rasos por meses. Vale gastar 10 minutos aqui.
+Your job is to **produce a good `benchmark/config.md`**. A shallow config yields shallow reports for months. Ten minutes here is worth it.
 
-## Como conduzir
+## How to run the interview
 
-- **Uma pergunta por vez.** Nunca despeje um formulário.
-- **Não pergunte o que você pode descobrir.** Deu a URL do produto? Leia o site, deduza o setor, o público e os prováveis concorrentes. Chegue com hipótese: *"Pelo site, parece SaaS B2B de gestão financeira; sugiro estas trilhas, estas dimensões e estas fontes — o que muda?"* A pessoa corrige mais rápido do que responde.
-- **Instrua, não só colete.** Você conhece os trade-offs; ela não. Diga qual setup recomenda e por quê. Consulte `references/perfis.md`.
-- **Insista na pergunta de decisão.** Sem saber que decisão o relatório alimenta, ele vira enciclopédia.
-- `AskUserQuestion` quando as opções são fechadas; texto livre quando é descoberta.
+- **One question at a time.** Never dump a form.
+- **Don't ask what you can find out.** Got the product URL? Read the site, infer the sector, the audience and the likely competitors. Arrive with a hypothesis: *"From the site this looks like B2B SaaS for financial ops; I'd suggest these tracks, these dimensions and these sources — what changes?"* People correct faster than they answer.
+- **Instruct, don't just collect.** You know the trade-offs; they don't. Say which setup you recommend and why. See `references/profiles.md`.
+- **Press on the decision question.** Without knowing what decision the report feeds, it becomes an encyclopedia.
+- `AskUserQuestion` for closed choices; free text for discovery.
 
-## Roteiro
+## Script
 
-### 0. Idioma — antes de tudo
-`AskUserQuestion`: **Português, Inglês, Espanhol.** Toda a entrevista, o relatório, a análise e o e-mail saem nesse idioma. Pergunte primeiro e siga no idioma escolhido a partir da resposta.
+### 0. Language — before anything else
+`AskUserQuestion`: **English, Portuguese, Spanish.** The interview, the report, the analysis and the email all come out in that language. Ask first, then continue in whatever they chose.
 
-### 1. O produto
-O que é, para quem, em uma frase. Peça o link e **leia o site** antes de continuar.
+### 1. The product
+What it is, who it's for, in one sentence. Ask for the link and **read the site** before moving on.
 
-### 2. A decisão
-"Quando o relatório chegar na segunda, que decisão ele vai te ajudar a tomar?" Roadmap, pricing, posicionamento, campanha, investimento, repertório de design.
+### 2. The decision
+"When the report lands on Monday, what decision will it help you make?" Roadmap, pricing, positioning, campaign, investment, design repertoire.
 
-### 3. Proponha o perfil
-Com base no site, classifique usando `references/perfis.md` e proponha **trilhas + dimensões + fontes de uma vez**, com a justificativa de cada escolha. Deixe a pessoa cortar.
+### 3. Propose a profile
+From the site, classify using `references/profiles.md` and propose **tracks + dimensions + sources all at once**, with the reasoning behind each choice. Let them cut.
 
-### 4. Trilhas
-Confirme quais ligar:
-- **`concorrentes`** — o que empresas específicas mudam: preço, produto, posicionamento, conteúdo, reputação
-- **`visual`** — referências de UI, design e arquitetura, entregues como galeria de imagens
-- **`inovacao`** — notícias, artigos, regulação, pesquisa e movimento de capital do setor
+### 4. Tracks
+Confirm which to enable:
+- **`competitors`** — what specific companies change: pricing, product, positioning, content, reputation
+- **`visual`** — UI, design and architecture references, delivered as an image gallery
+- **`innovation`** — news, articles, regulation, research and capital movement in the sector
 
-**Não incentive ligar tudo.** Três trilhas com seis fontes faz uma rodada longa e um relatório disperso. Diga isso se a pessoa pedir tudo.
+**Don't encourage enabling everything.** Three tracks across six sources makes a long round and a scattered report. Say so if they ask for all of it.
 
-### 5. Se `concorrentes` estiver ligada
-Quem são — você propõe a partir da pesquisa, ela corta e adiciona. Para cada um: nome, URL e **por que está na lista** (concorrente direto? referência de execução? ameaça futura?). Essa razão muda o que o coletor procura.
+### 5. If `competitors` is on
+Who they are — you propose from research, they cut and add. For each: name, URL, and **why it's on the list** (direct competitor? execution benchmark? future threat?). That reason changes what the collector looks for.
 
-Dimensões: `produto`, `preco`, `posicionamento`, `conteudo`, `reputacao`.
+Dimensions: `product`, `pricing`, `positioning`, `content`, `reputation`.
 
-### 6. Se `visual` estiver ligada
-- **O tema da busca.** Específico: "onboarding de fintech", "dashboards densos", "varejo de rua". Genérico produz galeria genérica.
-- **As fontes.** Mostre `references/fontes-visuais.md` e recomende de 3 a 5, explicando o que cada uma serve e o que não serve.
-- **Os conectores.** Siga `references/conectores.md`: ofereça Mobbin só se ela escolher Mobbin (e diga que exige plano pago **antes** de qualquer comando), e ofereça Playwright sempre (dizendo que são ~700MB e por que sem ele a galeria vira lista de links). **Peça permissão antes de instalar qualquer coisa.** Verifique se funcionou e registre no config.
+### 6. If `visual` is on
+- **The search theme.** Specific: "fintech onboarding", "dense dashboards", "street-level retail". Generic themes produce generic galleries.
+- **The sources.** Show `references/visual-sources.md` and recommend 3 to 5, explaining what each is good for and what it isn't.
+- **The connectors.** Follow `references/connectors.md`: offer Mobbin only if they pick Mobbin (and say it needs a paid plan **before** running anything), and always offer Playwright (saying it's ~700MB and why the gallery becomes a list of links without it). **Ask permission before installing anything.** Verify it worked and record it in the config.
 
-### 7. Se `inovacao` estiver ligada
-Qual o contexto a varrer, e quais ângulos interessam: capital, regulação, tecnologia, comportamento, entrantes, pesquisa. Recomende de 3 a 4 — todos os seis é varredura rasa.
+### 7. If `innovation` is on
+What context to sweep, and which angles matter: capital, regulation, technology, behaviour, entrants, research. Recommend 3 to 4 — all six is a shallow sweep.
 
-### 8. Gatilhos de urgência
-"O que teria que acontecer para você querer ser avisada no mesmo dia?"
+### 8. Urgency triggers
+"What would have to happen for you to want to know the same day?"
 
-### 9. Entrega
-Dia e hora, e quem lê. O relatório sempre vai para arquivo local e para um Artifact de URL fixa; pergunte se quer também um ping curto por e-mail e para qual endereço.
+### 9. Delivery
+Day and time, and who reads it. The report always goes to a local file and an Artifact with a fixed URL; ask whether they also want a short email ping and to which address.
 
-### 10. Fontes proibidas ou obrigatórias
-Sites que ela já acompanha, ou que não quer ver.
+### 10. Required or banned sources
+Sites they already follow, or ones they don't want to see.
 
-## Saída
+## Output
 
-Escreva `benchmark/config.md` neste formato exato — o pipeline lê estes cabeçalhos:
+Write `benchmark/config.md` in exactly this format — the pipeline reads these headings:
 
 ```markdown
-# Config do benchmark semanal
+# Weekly benchmark config
 
-## Idioma
-pt
+## Language
+en
 
-## Produto
-<uma frase> — <url>
+## Product
+<one sentence> — <url>
 
-## Decisão que este benchmark alimenta
-<frase>
+## Decision this benchmark feeds
+<sentence>
 
-## Trilhas ativas
-- concorrentes
+## Active tracks
+- competitors
 - visual
-- inovacao
+- innovation
 
-## Concorrentes
-| Nome | URL | Por que está na lista |
+## Competitors
+| Name | URL | Why it's on the list |
 |---|---|---|
 
-## Dimensões ativas
-- produto
-- preco
+## Active dimensions
+- product
+- pricing
 
-## Tema da busca visual
-<específico>
+## Visual search theme
+<specific>
 
-## Fontes visuais
-- mobbin (conector: ativo | indisponível | não escolhido)
+## Visual sources
+- mobbin (connector: active | unavailable | not chosen)
 - awwwards
 - savee
 
-## Ângulos de inovação
-- regulacao
-- tecnologia
+## Innovation angles
+- regulation
+- technology
 
-## Conectores
-Screenshots: sim | não (Playwright recusado)
+## Connectors
+Screenshots: yes | no (Playwright declined)
 
-## Gatilhos de urgência
-- <ex: qualquer concorrente muda preço do plano de entrada>
+## Urgency triggers
+- <e.g. any competitor changes the entry-tier price>
 
-## Entrega
-Quando: <toda segunda, 8h>
-Leitores: <quem>
-E-mail: <endereço, ou "não">
-Artifact URL: <vazio — preenchido pelo pipeline na primeira publicação; não edite>
+## Delivery
+When: <every Monday, 8am>
+Readers: <who>
+Email: <address, or "no">
+Artifact URL: <empty — filled by the pipeline on first publish; don't edit>
 
-## Fontes
-Obrigatórias: <...>
-Proibidas: <...>
+## Sources
+Required: <...>
+Banned: <...>
 ```
 
-Crie também `benchmark/snapshots/`, `benchmark/relatorios/`, `benchmark/galeria/` (vazias) e `benchmark/historico.md` com o cabeçalho `# Histórico`.
+Also create `benchmark/snapshots/`, `benchmark/reports/`, `benchmark/gallery/` (empty) and `benchmark/history.md` with the heading `# History`.
 
-## Fechamento
+## Closing
 
-Mostre o config e confirme antes de agendar. Explique que dá para agendar com a skill `schedule` rodando `/benchmark-run`, e ofereça fazer isso. Avise que a **primeira execução é a linha de base**: não vai ter diff, e isso é esperado.
+Show the config and confirm before scheduling. Explain that it can be scheduled with the `schedule` skill, and offer to do it. Warn that the **first run is the baseline**: there'll be no diff, and that's expected.

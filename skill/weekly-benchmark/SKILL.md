@@ -1,66 +1,66 @@
 ---
 name: weekly-benchmark
-description: Benchmark competitivo recorrente em três trilhas — concorrentes (preço, produto, posicionamento, reputação), referências visuais (Mobbin, Awwwards, Behance, Dribbble, Savee, ArchDaily) e inovação (notícias, regulação, capital, pesquisa). Configura por entrevista em português, inglês ou espanhol, roda toda semana comparando com a rodada anterior, verifica cada achado contra a fonte e publica um relatório visual. Use quando alguém quiser montar, rodar ou consultar um benchmark semanal, monitorar concorrentes, acompanhar referências de design ou UI, ou varrer inovação de um setor.
+description: Recurring competitive benchmark across three tracks — competitors (pricing, product, positioning, reputation), visual references (Mobbin, Awwwards, Behance, Dribbble, Savee, ArchDaily) and innovation (news, regulation, capital, research). Sets up through an interview in English, Portuguese or Spanish, runs weekly against the previous round, verifies every finding against its source, and publishes a visual report. Use when someone wants to set up, run or check a weekly benchmark, track competitors, follow design or UI references, or sweep a sector for innovation.
 ---
 
-# Benchmark semanal
+# Weekly benchmark
 
-Pipeline de benchmark recorrente. Configura uma vez, roda toda semana, entrega um relatório curto onde toda afirmação tem fonte.
+A recurring benchmark pipeline. Configure once, run every week, deliver a short report where every claim carries a source.
 
-## Descubra o que fazer
+## Figure out what to do
 
-Leia `benchmark/config.md` na pasta de trabalho.
+Read `benchmark/config.md` in the working folder.
 
-| Situação | Faça |
+| Situation | Do this |
 |---|---|
-| Não existe config, ou a pessoa quer (re)configurar | **Setup** — siga `references/setup.md` |
-| Existe config e é hora de rodar | **Execução** — siga `references/run.md` |
-| A pessoa quer saber o estado | **Status** — veja abaixo |
+| No config, or the person wants to (re)configure | **Setup** — follow `references/setup.md` |
+| Config exists and it's time to run | **Run** — follow `references/run.md` |
+| The person wants to know the state of things | **Status** — see below |
 
-Se a pessoa pediu algo ambíguo ("faz o benchmark"), e já existe config, rode. Se não existe, faça o setup.
+If the request is ambiguous ("do the benchmark") and a config exists, run it. If none exists, set it up.
 
-## Como este pipeline delega
+## How this pipeline delegates
 
-Os papéis vivem em `references/agentes/`. Para acionar um, use a ferramenta `Agent` (tipo `general-purpose`) passando **o conteúdo do briefing** como prompt, junto com os dados daquela chamada e o idioma do config.
+The roles live in `references/agents/`. To invoke one, use the `Agent` tool (type `general-purpose`), passing **the briefing's contents** as the prompt, along with that call's specific data and the language declared in the config.
 
-| Briefing | Papel |
+| Briefing | Role |
 |---|---|
-| `coletor-concorrente.md` | estado atual de um concorrente, com fonte em todo fato |
-| `coletor-mercado.md` | eventos transversais do setor |
-| `curador-visual.md` | referências de UI e design de uma fonte, com screenshot e crédito |
-| `scout-inovacao.md` | varredura de um ângulo: capital, regulação, tecnologia, pesquisa |
-| `diffador.md` | o que mudou desde a rodada anterior |
-| `analista.md` | por que um delta importa para este produto |
-| `critico.md` | tenta derrubar cada achado antes de ele entrar no relatório |
-| `editor.md` | monta o relatório |
-| `publicador.md` | entrega em arquivo, Artifact e e-mail |
+| `competitor-collector.md` | current state of one competitor, with a source for every fact |
+| `market-collector.md` | cross-cutting events in the sector |
+| `visual-curator.md` | UI and design references from one source, with screenshot and credit |
+| `innovation-scout.md` | sweeps one angle: capital, regulation, technology, research |
+| `differ.md` | what changed since the previous round |
+| `analyst.md` | why a delta matters for this product |
+| `critic.md` | tries to knock down every finding before it reaches the report |
+| `editor.md` | assembles the report |
+| `publisher.md` | delivers to file, Artifact and email |
 
-**Dispare em paralelo** — todas as coletas numa única mensagem com várias chamadas de `Agent`. Cada uma roda em contexto próprio, então oito concorrentes não enchem a sua janela.
+**Fire them in parallel** — all collection in a single message with multiple `Agent` calls. Each runs in its own context, so eight competitors won't flood your window.
 
 ## Status
 
-Leia `benchmark/config.md`, liste `benchmark/snapshots/` e leia `benchmark/historico.md`. Responda curto: o que está sendo monitorado, quantas rodadas houve, quando foi a última, e quais padrões se repetiram. Sem config, mande fazer o setup.
+Read `benchmark/config.md`, list `benchmark/snapshots/` and read `benchmark/history.md`. Answer short: what's being tracked, how many rounds have run, when the last one was, and which patterns repeat. With no config, point to setup.
 
-## Os princípios que não se negociam
+## Non-negotiable principles
 
-**O diff é o produto.** Coleta sem comparação é descrição do mercado — bonita e inútil.
+**The diff is the product.** Collection without comparison is a description of the market — pretty and useless.
 
-**O crítico tem veto.** Todo achado passa por um agente cuja função é derrubá-lo. Sem fonte verificável, morre.
+**The critic has veto power.** Every finding passes an agent whose job is to knock it down. No verifiable source, no entry.
 
-**Semana morta é entrega válida.** Nada mudou? Quatro linhas dizendo isso. Inflar rodada vazia destrói a confiança na rodada em que algo aconteceu.
+**A dead week is a valid delivery.** Nothing changed? Four lines saying so. Padding an empty round destroys trust in the round where something actually happened.
 
-**A trilha visual não passa pelo diff.** Referência de UI não muda entre semanas — ela aparece. É curadoria acumulativa.
+**The visual track skips the diff.** A UI reference doesn't change between weeks — it appears. It's cumulative curation.
 
-**Nenhum conector ausente derruba a rodada.** Cada um degrada, e o rodapé diz o que faltou.
+**No missing connector kills a round.** Each one degrades, and the footer says what was unavailable.
 
-## Mapa dos arquivos
+## File map
 
-- `references/setup.md` — roteiro da entrevista e formato do config
-- `references/run.md` — orquestração da rodada
-- `references/perfis.md` — configurações recomendadas por tipo de projeto
-- `references/fontes-visuais.md` — catálogo, com o que buscar e o que não buscar em cada fonte
-- `references/conectores.md` — Mobbin MCP e Playwright: custo, permissão e degradação
-- `references/schema.md` — formato fixo da coleta
-- `references/qualidade.md` — os testes que o relatório precisa passar
-- `references/design.md` — o sistema visual do relatório
-- `assets/template.html` — esqueleto do relatório, para copiar e preencher
+- `references/setup.md` — interview script and config format
+- `references/run.md` — how a round is orchestrated
+- `references/profiles.md` — recommended setups by project type
+- `references/visual-sources.md` — catalogue: what to look for, and what not to, in each source
+- `references/connectors.md` — Mobbin MCP and Playwright: cost, permission, degradation
+- `references/schema.md` — fixed collection format
+- `references/quality.md` — the tests the report has to pass
+- `references/design.md` — the report's visual system
+- `assets/template.html` — report skeleton, to copy and fill
